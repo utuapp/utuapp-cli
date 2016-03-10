@@ -1,6 +1,6 @@
 {
   "name": "utuapp-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "the command line for utuapp",
   "bin": {
     "utuapp": "./bin/utuapp"
