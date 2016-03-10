@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var program = require('commander');
+var chalk = require('chalk');
+var mkdirp = require('mkdirp').sync;
+var path = require('path');
+var cpr = require('cpr');
+
+program
+  .usage('<template-name> [project-name]')
+  .parse(process.argv);
+
+console.log();
+process.on('exit', console.log);
+
+var template = program.args[0];
+var project = program.args[1];
+var inPlace, dir;
+
+if (!/(vue)/ig.test(template)) {
+  console.error(chalk.red('invalid template name, eg: vue'));
+  process.exit(1);
+}
+
+if (project === '.' || !project) {
+  project = path.relative('../', process.cwd());
+  inPlace = true;
+}
+
+if (!inPlace) {
+  if (fs.existsSync(path.resolve(project))) {
+    console.error(chalk.red('file or directory `' + project + '` exists'));
+    process.exit(1);
+  } else {
+    mkdirp(project);
+  }
+
+  dir = path.resolve(project);
+} else {
+  dir = path.resolve('.');
+}
+
+cpr(path.resolve(__dirname + '/../templates/webpack-' + template), dir, (err, files) => {
+  if (!!err) {
+    console.error(chalk.red(err));
+    process.exit(1);
+  }
+
+  var filepath = files.filter(f => /package.json$/.test(f))[0];
+  var pkg = require(filepath);
+  console.log(pkg.name);
+  pkg.name = project;
+  fs.writeFileSync(filepath, JSON.stringify(pkg, '', '  '));
+
+  console.log(chalk.green('Success!'));
+  process.exit(0);
+});

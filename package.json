@@ -1,0 +1,31 @@
+{
+  "name": "utuapp-cli",
+  "version": "0.0.1",
+  "description": "the command line for utuapp",
+  "bin": {
+    "utuapp": "./bin/utuapp"
+  },
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utuapp/utuapp-cli.git"
+  },
+  "keywords": [
+    "utuapp"
+  ],
+  "author": "CC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/utuapp/utuapp-cli/issues"
+  },
+  "homepage": "https://github.com/utuapp/utuapp-cli#readme",
+  "dependencies": {
+    "chalk": "1.1.1",
+    "commander": "2.9.0",
+    "cpr": "1.0.0",
+    "mkdirp": "0.5.1"
+  }
+}
