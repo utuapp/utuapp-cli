@@ -7,7 +7,7 @@
 /* global describe, it, expect */
 
 import Vue from 'vue';
-import Hello from '../../src/components/Hello';
+import Hello from '../../src/components/Hello.vue';
 
 describe('Hello', () => {
   it('should render `Hello`', () => {
