@@ -2,7 +2,7 @@
 * @Author: CC
 * @Date:   2016-03-10 10:36:40
 * @Last Modified by:   CC
-* @Last Modified time: 2016-03-10 11:54:13
+* @Last Modified time: 2016-03-14 12:04:38
 */
 
 const path = require('path');
@@ -34,6 +34,10 @@ module.exports = {
       },
     ],
     loaders: [
+      {
+        test: /\.vue$/,
+        loader: 'vue',
+      },
       {
         test: /\.js$/,
         loader: 'babel',
